@@ -43,7 +43,7 @@ public class LoveRecycleAdapter extends RecyclerView.Adapter<LoveRecycleAdapter.
         }
         Contentlist contentlist = mContentlist.get(position);
         Picasso.with(mContext).load(contentlist.contentImg).into(holder.ivItemMain);
-        holder.textViewLabel.setText(contentlist.userName+"=="+position);
+        holder.textViewLabel.setText(contentlist.userName);
         holder.getTextViewDesc.setText(contentlist.title);
     }
 
@@ -52,7 +52,7 @@ public class LoveRecycleAdapter extends RecyclerView.Adapter<LoveRecycleAdapter.
         return mContentlist.size()==0?0:mContentlist.size();
     }
 
-    //黑夜了~
+    //黑夜~
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private CircleImageView ivItemMain;

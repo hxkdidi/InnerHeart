@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     TabLayout mTabLayout;
     private int mPageIndex;
 
-    private String[] mTitles = {"实时热点","清新妹纸","精选音乐","测试效果","测试效果"};
+    private String[] mTitles = {"实时热点","清新妹纸","精选音乐","滚动页面","滚动页面"};
     private List<Fragment> mFragments;
     private Object pageList;
 

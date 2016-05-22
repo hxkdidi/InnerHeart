@@ -50,11 +50,11 @@
                     android:layout_toRightOf="@id/iv_item_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#745062"
+                    android:textColor="#000"
                     android:text="描述描述描述"
                     android:typeface="sans"
                     android:maxLines="3"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:ellipsize="end"
                     android:layout_below="@id/tv_item_label"
                     android:padding="15dp"
@@ -78,7 +78,7 @@
                 <Button
                     android:id="@+id/btn_more"
                     android:background="#00000000"
-                    android:textColor="#7AD3E0"
+                    android:textColor="#000"
                     android:text="分享"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

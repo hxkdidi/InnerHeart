@@ -8,11 +8,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,6 @@ import butterknife.ButterKnife;
 import daixin.me.bugua.ContentActivity;
 import daixin.me.bugua.R;
 import daixin.me.bugua.listeners.RecyclerItemClickListener;
-import daixin.me.bugua.listeners.OnLoadMoreListener;
 import daixin.me.bugua.net.DaixinRetrofit;
 import daixin.me.bugua.ui.adapter.LoveRecycleAdapter;
 import daixin.me.bugua.ui.model.Contentlist;
@@ -64,12 +63,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     private void initView() {
-
         linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         loveRecycleAdapter = new LoveRecycleAdapter(mContext,mContentlist);
         mRecyclerView.setAdapter(loveRecycleAdapter);
-
     }
 
     private void initRefresh() {
@@ -125,24 +122,20 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             public void onCompleted() {
                 loveRecycleAdapter.addMoreData(contentlists);
                 //防止 点击角标越界
-                loveRecycleAdapter.setLoadMoreListener(new OnLoadMoreListener() {
-                    @Override
-                    public Object loadUpdateData(Object o) {
-                        contentlists = (List<Contentlist>) o;
-                        return null;
-                    }
+                loveRecycleAdapter.setLoadMoreListener((o)->{
+                    contentlists = (List<Contentlist>) o;
+                    return null;
                 });
-                        swipeRefreshLayout.setRefreshing(false);
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e("HAHA", e.toString());
+                Toast.makeText(mContext,"服务器繁忙",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNext(Pagebean pagebean) {
-                    Log.d("daixin","检验"+pagebean.toString());
                     contentlists = pagebean.contentlist;
             }
         };
