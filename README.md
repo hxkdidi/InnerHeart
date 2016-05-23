@@ -1,7 +1,7 @@
 # InnerHeart客户端
 这是一个关于网络请求数据展示的项目,有新闻,有妹纸,有音乐Android Client
 
-一个关于RxJava+Retrofit+Okhttp+JAVA8新特性的开源Android客户端应用.更多信息可以点击[这里](http://daixin.me)
+一个关于RxJava+Retrofit+Okhttp+JAVA8新特性的开源Android客户端应用.更多信息可以点击<a href="http://daixin.me" target="_blank">这里</a>
 
 ###她大概长这个样子:
 
@@ -59,7 +59,7 @@
 
 提交Bug请发送邮件到:**prosperdai@163.com**
 
-欢迎来我的博客:**[daixin.me](http://daixin.me)**
+欢迎来我的博客:**<a href="http://daixin.me" target="_blank">daixin.me</a>**
 
 
 
