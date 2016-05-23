@@ -20,7 +20,7 @@
 
 
 1. JDK需要使用最新的Java8
-2. 项目中资讯模块接口来源:[易源接口](https://www.showapi.com/)
+2. 项目中资讯模块接口来源:<a href="https://www.showapi.com" target="_blank">易源</a>
 3. 妹纸接口来源:(这个就不公开了,受于使用的是未公开的Api接口,版权意识,你我有责哈,打开项目里面你就可以看到~\(≧▽≦)/~)
 4. 音乐模块使用的是MediaPlayer
 
