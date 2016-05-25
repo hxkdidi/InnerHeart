@@ -26,9 +26,9 @@ public class ItemImage extends ImageView {
     public void setOriginalSize(int originalWidth, int originalHeight) {
         this.originalWidth = originalWidth;
         this.originalHeight = originalHeight;
-
     }
 
+    //处理服务器返回的图片大小不统一,关于这块还可以优化得更好
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (originalWidth > 0 && originalHeight > 0) {

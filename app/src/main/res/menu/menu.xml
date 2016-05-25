@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/donate"
+    <item android:id="@+id/search"
         android:icon="@drawable/ic_action_search"
-        android:title="捐助本App"
-        app:showAsAction="always"></item>
-    <item android:id="@+id/donate1"
+        app:showAsAction="always"
+        android:title="搜索"></item>
+    <item android:id="@+id/notify"
         android:icon="@drawable/ic_action_notify"
-        android:title="捐助本App"
-        app:showAsAction="always"></item>
-    <item android:id="@+id/donate3"
+        app:showAsAction="always"
+        android:title="通知"></item>
+    <item android:id="@+id/donate"
         android:icon="@mipmap/ic_launcher"
-        android:title="捐助本App2"></item>
+        android:title="设置"></item>
 
 </menu>

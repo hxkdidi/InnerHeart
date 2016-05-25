@@ -7,7 +7,6 @@
         android:id="@+id/tv_detail_song_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="算什么男人"
         android:textColor="#fff"
         android:typeface="serif"
         android:textSize="28sp"
@@ -21,7 +20,6 @@
         android:id="@+id/star_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="周杰伦"
         android:textColor="#fff"
         android:textSize="18sp"
         android:layout_centerHorizontal="true"
@@ -72,7 +70,6 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:text="00:00"
             android:layout_marginLeft="10dp"
             android:textColor="#FFF"/>
         <SeekBar
@@ -91,7 +88,6 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:text="03:40"
             android:layout_marginRight="10dp"
             android:textColor="#FFF"/>
     </LinearLayout>

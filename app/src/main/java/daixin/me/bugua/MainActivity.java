@@ -34,11 +34,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     ViewPager mViewPager;
     @Bind(R.id.tablayout)
     TabLayout mTabLayout;
-    private int mPageIndex;
 
-    private String[] mTitles = {"实时热点","清新妹纸","精选音乐","滚动页面","滚动页面"};
+    private String[] mTitles = {"实时热点","清新妹纸","热门音乐","滚动其他","滚动其他"};
     private List<Fragment> mFragments;
-    private Object pageList;
 
     @Override
     public void initializeEvent() {
@@ -105,11 +103,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(adapter);//给Tabs设置适配器
         mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mPageIndex = tab.getPosition();
+
             }
 
             @Override
@@ -126,7 +122,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initializeView() {
         setSupportActionBar(mToolbar);
-
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.open, R.string.close);
         mDrawerLayout.setDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -144,7 +139,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.donate) {
-            Toast.makeText(MainActivity.this, "捐助本App", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, R.string.setting, Toast.LENGTH_SHORT).show();
+        }else if (itemId == R.id.search){
+            Toast.makeText(MainActivity.this, R.string.serach, Toast.LENGTH_SHORT).show();
+        }else if(itemId == R.id.notify){
+            Toast.makeText(MainActivity.this, R.string.notify, Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -153,7 +152,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.nav_about) {
-            Toast.makeText(MainActivity.this, "关于", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"about us", Toast.LENGTH_SHORT).show();
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;

@@ -62,13 +62,9 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     private Context mContext;
     private List<Songlist> mContentlist = new ArrayList<Songlist>();
     private Subscriber<List<Songlist>> subscriber;
-    private boolean isRefresh;
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
-    private int lastVisibleItemPosition;
     private MusicRecycleAdapter musicRecycleAdapter;
-    private int mPage = 20;
     private List<Songlist> contentlists;
-    private int mFragmentIndex = 0;
     public static final int MEIZHISIZE = 4;
     private MusicService musicService;
     private boolean isPause;
@@ -81,7 +77,7 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         ButterKnife.bind(this,rootView);
         mContext = container.getContext();
         initView();
-        getPageList(mPage);
+        getPageList();
         initRefresh();
         OnClickItem();
         return rootView;
@@ -177,13 +173,7 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                 int postions[] = new int[mStaggeredGridLayoutManager.getSpanCount()];
                 boolean isBottomPosition = mStaggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(postions)[1] >= musicRecycleAdapter.getItemCount() - MEIZHISIZE;
                 if (isBottomPosition && !swipeRefreshLayout.isRefreshing()) {
-                    if (!isRefresh) {
-                        swipeRefreshLayout.setRefreshing(true);
-                        mPage += 20;
-                        getPageList(mPage);
-                    } else {
-                        isRefresh = false;
-                    }
+                    Toast.makeText(mContext, R.string.no_more_data,Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -202,10 +192,8 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         ButterKnife.unbind(this);
     }
 
-    public void getPageList(int pn) {
+    public void getPageList() {
         subscriber = new Subscriber<List<Songlist>>() {
-
-
             @Override
             public void onCompleted() {
                 musicRecycleAdapter.addMoreData(contentlists);
@@ -229,7 +217,6 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
 
     @Override
     public void onRefresh() {
-        mPage += 20;
         MusicRetrofit.getSingleton().getMusicPageList(subscriber);
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -252,7 +239,11 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
 
         if(position<0 || MusicTools.musicList.isEmpty()) return;
         Songlist songlist = MusicTools.musicList.get(position);
-        Picasso.with(mContext).load(songlist.getAlbumpicBig()).into(ivAlbumShowy);
+        if (songlist.getAlbumpicBig()!=null){
+            Picasso.with(mContext).load(songlist.getAlbumpicBig()).into(ivAlbumShowy);
+        }else {
+            ivAlbumShowy.setImageResource(R.drawable.default_author);
+        }
         ivAlbumShowy.setOnClickListener((headImg)->{
             Intent intent = new Intent(mContext, MusicAlbumAcivity.class);
             Bundle bundle = new Bundle();
@@ -269,7 +260,6 @@ public class MusicFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         public void run() {
             //获得歌曲现在播放位置并设置成播放进度条的值
             mSeekBar.setProgress(mainActivity.getPlayService().getMediaPlayerCurrentPostion());
-            //每次延迟100毫秒再启动线程
             handler.postDelayed(updateThread, 100);
         }
     };

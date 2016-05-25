@@ -1,8 +1,6 @@
 package daixin.me.bugua;
 
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.view.View;
@@ -15,7 +13,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import butterknife.Bind;
 import daixin.me.bugua.ui.model.music.Songlist;
@@ -96,7 +93,11 @@ public class MusicAlbumAcivity extends BaseActivity {
         action1 = (songlist) -> {
             starName.setText(songlist.getSingername());
             tvDetailSongName.setText(songlist.getSongname());
-            Picasso.with(MusicAlbumAcivity.this).load(songlist.getAlbumpicBig()).into(playerAuthorImg);
+            if (songlist.getAlbumpicBig()!=null){
+                Picasso.with(MusicAlbumAcivity.this).load(songlist.getAlbumpicBig()).into(playerAuthorImg);
+            }else {
+                playerAuthorImg.setImageResource(R.drawable.default_author);
+            }
         };
         songInfoObserable = musicService.getSongInfoObserable();
         songInfoObserable.subscribeOn(Schedulers.io())
@@ -148,7 +149,11 @@ public class MusicAlbumAcivity extends BaseActivity {
         tvDetailSongName.setText(songlist.getSongname());
         songCurrentTime.setText(Utils.formatTime(musicService.getMediaPlayerCurrentPostion()));
         songTotalTime.setText(Utils.formatTime((int) musicService.getMusicDuration()));
-        Picasso.with(MusicAlbumAcivity.this).load(songlist.getAlbumpicBig()).into(playerAuthorImg);
+        if (songlist.getAlbumpicBig()!=null){
+            Picasso.with(MusicAlbumAcivity.this).load(songlist.getAlbumpicBig()).into(playerAuthorImg);
+        }else {
+            playerAuthorImg.setImageResource(R.drawable.default_author);
+        }
         handler1.post(updateThread1);
         if (musicService !=null){
             if(musicService.isPlaying()){

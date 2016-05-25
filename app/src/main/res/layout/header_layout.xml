@@ -23,13 +23,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:text="Github-name:ishidai"
+        android:text="@string/github_name_ishidai"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="个人博客:daixin.me" />
+        android:text="@string/daixin_me" />
 
 </LinearLayout>
